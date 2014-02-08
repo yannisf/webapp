@@ -17,9 +17,20 @@
         <servlet-class>fraglab.webapp.servlet.SampleServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>AxisServlet</servlet-name>
+        <servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>SampleServlet</servlet-name>
         <url-pattern>/sample</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>/services/*</url-pattern> <!-- Default is services. axis2.xml needs parameter-->
     </servlet-mapping>
 
     <filter>
