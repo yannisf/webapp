@@ -1,13 +1,13 @@
 Sample maven webapp to start working on multiple setups
 
-* master
-Vanilla 2.5 webapp
+* axis2
+Axis2 webservice and client
 
-* full
-Servlet, filter and context listener
+Generate client like so:
+wsdl2java.sh -S src/main/java -p fraglab.webapp.axis.client -d adb -s --noBuildXML -uri http://localhost:8080/webapp/services/HelloService?wsdl
 
-* spring
-Spring based web app
+Run like so:
+mvn clean package tomcat7:run
 
-* spring_gwt
-Spring gwt based web app
+Client class:
+fraglab.webapp.axis.client.HelloServiceClient

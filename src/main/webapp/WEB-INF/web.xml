@@ -30,7 +30,7 @@
 
     <servlet-mapping>
         <servlet-name>AxisServlet</servlet-name>
-        <url-pattern>/services/*</url-pattern> <!-- Default is services. axis2.xml needs parameter-->
+        <url-pattern>/ws/*</url-pattern> <!-- Default is services. axis2.xml needs parameter-->
     </servlet-mapping>
 
     <filter>
@@ -46,8 +46,32 @@
     <listener>
         <listener-class>fraglab.webapp.listeners.SampleListener</listener-class>
     </listener>
+    
+    <security-role>
+        <role-name>user</role-name>
+    </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>secure</web-resource-name>
+            <url-pattern>/secure/*</url-pattern>
+            <url-pattern>/ws/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>user</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>default</realm-name>
+    </login-config>
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+
 </web-app>

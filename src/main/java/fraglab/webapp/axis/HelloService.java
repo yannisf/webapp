@@ -6,4 +6,8 @@ public class HelloService {
         return "Hello!";
     }
 
+    public String personalizedHello(String name) {
+        return "Hello, " + name + "!";
+    }
+
 }
