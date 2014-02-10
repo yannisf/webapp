@@ -15,6 +15,9 @@ public class HelloServiceClient {
     private HelloServiceStub stub;
 
     public static void main(String[] args) throws RemoteException {
+        Person p = new Person("Yannis", "Frangos");
+        System.out.println(p.getFullName());
+
         HelloServiceClient client = new HelloServiceClient();
         client.stub = new HelloServiceStub();
         client.setupAuthentication();
