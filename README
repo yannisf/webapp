@@ -1,13 +1,5 @@
 Sample maven webapp to start working on multiple setups
 
-* axis2
-Axis2 webservice and client
-
-Generate client like so:
-wsdl2java.sh -S src/main/java -p fraglab.webapp.axis.client -d adb -s --noBuildXML -uri http://localhost:8080/webapp/services/HelloService?wsdl
-
-Run like so:
-mvn clean package tomcat7:run
-
-Client class:
-fraglab.webapp.axis.client.HelloServiceClient
+Notable features of this branch:
+* Configures tomcat with a datasource (mysql)
+* Includes logback logging
