@@ -28,6 +28,6 @@
     <Resource name="jdbc/standard" auth="Container" type="javax.sql.DataSource"
               maxActive="10" maxIdle="3" maxWait="10000"
               username="yannis" password="yannis" driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://localhost:13306/SCHOOL_REGISTRY"/>
+              url="jdbc:mysql://localhost:13306/SPRING_USERS"/>
 
 </Context>
