@@ -9,19 +9,20 @@
 
     <jee:jndi-lookup id="securityDataSource" jndi-name="jdbc/standard" expected-type="javax.sql.DataSource" />
 
+    <ldap-server url="ldap://localhost:10389/dc=springframework,dc=org" />
+
+
     <http pattern="/scripts/**" security="none"/>
     <http pattern="/styles/**" security="none"/>
 
     <http>
-        <intercept-url pattern="/secure/*" access="ROLE_USER" />
+        <intercept-url pattern="/secure/*" access="ROLE_ADMIN" />
         <form-login/>
         <logout />
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <jdbc-user-service data-source-ref="securityDataSource"/>
-        </authentication-provider>
+        <ldap-authentication-provider user-dn-pattern="uid={0},ou=people" group-search-base="ou=groups"/>
     </authentication-manager>
 
 </beans:beans>

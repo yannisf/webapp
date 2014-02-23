@@ -1,22 +1,4 @@
 Sample maven webapp to start working on multiple setups
 
 Notable features of this branch:
-* Configures tomcat with a datasource (mysql)
-* Spring uses this datasource for security
-
-* DEFAULT SCHEMA REQUIRED *
-CREATE TABLE `users` (
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`username`)
-);
-
-CREATE TABLE `authorities` (
-  `username` varchar(50) NOT NULL,
-  `authority` varchar(50) NOT NULL,
-  UNIQUE KEY `ix_auth_username` (`username`,`authority`),
-  CONSTRAINT `fk_authorities_users` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-);
-
-
+* LDAP authentication
