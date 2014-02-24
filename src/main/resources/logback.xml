@@ -6,6 +6,17 @@
         </encoder>
     </appender>
 
+    <appender name="SPRING" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="org.springframework" level="DEBUG" additivity="true">
+        <appender-ref ref="SPRING"/>
+    </logger>
+
     <root level="debug">
         <appender-ref ref="STDOUT"/>
     </root>
