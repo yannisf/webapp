@@ -3,15 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-    <context-param>
-        <param-name>sample</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-    <session-config>
-        <session-timeout>10</session-timeout>
-    </session-config>
-
     <servlet>
         <servlet-name>SampleServlet</servlet-name>
         <servlet-class>fraglab.webapp.servlet.SampleServlet</servlet-class>
@@ -32,24 +23,9 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <filter>
-        <filter-name>SampleFilter</filter-name>
-        <filter-class>fraglab.webapp.filter.SampleFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>SampleFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
-    <listener>
-        <listener-class>fraglab.webapp.listeners.SampleListener</listener-class>
-    </listener>
-    
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
