@@ -1,13 +1,13 @@
-Sample maven webapp to start working on multiple setups
+# Sample maven webapp to start working on multiple setups
 
-* master
+## master
 Vanilla 2.5 webapp
 
-* full
+## full
 Servlet, filter and context listener
 
-* spring
+## spring
 Spring based web app
 
-* spring_gwt
+## spring_gwt
 Spring gwt based web app
