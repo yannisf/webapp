@@ -2,7 +2,9 @@ package fraglab.webapp.listeners;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
+@WebListener(value = "Sample listener")
 public class SampleListener implements ServletContextListener{
 
     @Override
