@@ -11,3 +11,6 @@ Spring based web app
 
 ## spring_gwt
 Spring gwt based web app
+
+## servlet3-jetty
+Servlet 3 based web application, with jetty plugin for fast development in pom.xml
