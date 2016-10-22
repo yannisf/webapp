@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(filterName = "SampleFilter", urlPatterns = {"/*"})
+@WebFilter(filterName = "SampleFilter", urlPatterns = {"/*"}, asyncSupported = true)
 public class SampleFilter implements Filter {
 
     @Override
