@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import java.sql.*;
 import java.util.Properties;
 
-class DatabaseHelperTest {
+public class DatabaseHelperTest {
 
     @Test
     public void databaseTest() {
