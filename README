@@ -1,5 +1,0 @@
-Sample maven webapp to start working on multiple setups
-
-Notable features of this branch:
-* Configures tomcat with a datasource (mysql)
-* Includes logback logging
