@@ -9,15 +9,23 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <properties>
+        <weblogic.user>weblogic</weblogic.user>
+        <weblogic.passwd>d41d8cd9</weblogic.passwd>
+        <weblogic.target>AdminServer</weblogic.target>
+        <weblogic.adminUrl>t3://localhost:8001</weblogic.adminUrl>
+    </properties>
+
     <build>
+        <finalName>webapp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -26,24 +34,28 @@
                 <version>3.0.0</version>
             </plugin>
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
+                <groupId>com.oracle.weblogic</groupId>
+                <artifactId>weblogic-maven-plugin</artifactId>
+                <version>10.3.6.0</version>
                 <configuration>
-                    <url>http://localhost:8080/manager/text</url>
-                    <username>manager</username>
-                    <password>manager2</password>
+                    <name>webapp</name>
+                    <source>${project.build.directory}/webapp.war</source>
+                    <upload>true</upload>
+                    <remote>true</remote>
+                    <verbose>true</verbose>
+                    <stage>false</stage>
+                    <adminurl>${weblogic.adminUrl}</adminurl>
+                    <targets>${weblogic.target}</targets>
+                    <user>${weblogic.user}</user>
+                    <password>${weblogic.passwd}</password>
                 </configuration>
                 <executions>
                     <execution>
                         <id>deploy</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>deploy-only</goal>
+                            <goal>deploy</goal>
                         </goals>
-                        <configuration>
-                            <update>true</update>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -56,22 +68,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.4-1201-jdbc41</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.21</version>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.9.10</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
