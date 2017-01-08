@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <context-param>
+        <param-name>liquibase.changelog</param-name>
+        <param-value>fraglab/webapp/db.changelog.xml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>liquibase.datasource</param-name>
+        <param-value>java:comp/env/jdbc/registry</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>liquibase.onerror.fail</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>liquibase.integration.servlet.LiquibaseServletListener</listener-class>
+    </listener>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

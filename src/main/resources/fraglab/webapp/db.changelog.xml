@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="sample1" author="yannis">
+        <sql>
+            CREATE TABLE sample (id int not null, message varchar NOT NULL);
+            INSERT INTO sample VALUES (1, 'Hello, World!');
+        </sql>
+    </changeSet>
+
+    <changeSet id="sample2" author="yannis">
+        <sql>
+            update sample set message = 'Goodbye cruel world' where id = 1;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

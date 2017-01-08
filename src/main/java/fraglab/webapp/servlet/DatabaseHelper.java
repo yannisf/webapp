@@ -1,29 +1,38 @@
 package fraglab.webapp.servlet;
 
-import java.sql.*;
-import java.util.Properties;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 class DatabaseHelper {
 
-    String getVersion() {
-        String version = "N/A";
-        String url = "jdbc:postgresql://localhost/registry_db";
-        Properties props = new Properties();
-        props.setProperty("user", "registry_db_user");
-        props.setProperty("password", "registry_db_user");
-        try (
-                Connection connection = DriverManager.getConnection(url, props);
-                Statement statement = connection.createStatement();
-        ) {
-            ResultSet resultSet = statement.executeQuery("select version()");
-            resultSet.next();
-            version = resultSet.getString(1);
-        } catch (SQLException e) {
-            //
+    String getMessage() {
+
+        DataSource ds = null;
+        try {
+            Context initCtx = new InitialContext();
+            Context envCtx = (Context) initCtx.lookup("java:comp/env");
+            ds = (DataSource) envCtx.lookup("jdbc/sample");
+        } catch (NamingException e) {
+            e.printStackTrace();
         }
 
-        return version;
-    }
+        String message = null;
+        try (Connection connection = ds.getConnection();
+             Statement statement = connection.createStatement();) {
+            ResultSet resultSet = statement.executeQuery("select message from sample where id = 1");
+            resultSet.next();
+            message = resultSet.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        return message;
+    }
 
 }

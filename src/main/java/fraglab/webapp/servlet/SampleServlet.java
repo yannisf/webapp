@@ -13,6 +13,6 @@ public class SampleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DatabaseHelper helper = new DatabaseHelper();
-        resp.getWriter().println("Received GET request: " + helper.getVersion());
+        resp.getWriter().println("Received GET request: " + helper.getMessage());
     }
 }
