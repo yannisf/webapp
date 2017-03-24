@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
+
     <Resource name="jdbc/hsqldb" auth="Container"
               type="javax.sql.DataSource" driverClassName="org.hsqldb.jdbcDriver"
               url="jdbc:hsqldb:hsql://localhost/xdb"
@@ -14,5 +15,9 @@
         <env-entry-type>java.lang.Integer</env-entry-type>
     </env-entry>
     -->
+
+    <Resource name="bean/SampleBeanFactory" auth="Container" singleton="true"
+              type="fraglab.webapp.bean.SampleBean" factory="org.apache.naming.factory.BeanFactory"
+              beanName="From context.xml"/>
 
 </Context>

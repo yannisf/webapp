@@ -1,5 +1,7 @@
 package fraglab.webapp.servlet;
 
+import fraglab.webapp.bean.SampleBean;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -22,22 +24,16 @@ public class JndiServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer databaseSaid = 0;
         String environmentSaid = "";
+        SampleBean bean = null;
         Context initContext = null;
         try {
             initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
             DataSource ds = (DataSource) envContext.lookup("jdbc/hsqldb");
-
-            try (Connection conn = ds.getConnection()) {
-                PreparedStatement preparedStatement = conn.prepareStatement(TEST_QUERY);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                resultSet.next();
-                databaseSaid = resultSet.getInt(1);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
+            databaseSaid = getInteger(ds);
             environmentSaid = (String) envContext.lookup("message");
+            bean = (SampleBean) envContext.lookup("bean/SampleBeanFactory");
+            System.out.println("Found bean " + bean.toString());
         } catch (NamingException e) {
             e.printStackTrace();
         }
@@ -45,6 +41,20 @@ public class JndiServlet extends HttpServlet {
         resp.getWriter().println("Received GET request");
         resp.getWriter().println(String.format("Database said [%s]", databaseSaid));
         resp.getWriter().println(String.format("Environment said [%s]", environmentSaid));
+        resp.getWriter().println(String.format("Bean [%s] has id [%s]", bean.getBeanName(), bean.incrementAndGetId()));
+    }
+
+    private Integer getInteger(DataSource ds) {
+        Integer databaseSaid = null;
+        try (Connection conn = ds.getConnection()) {
+            PreparedStatement preparedStatement = conn.prepareStatement(TEST_QUERY);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            databaseSaid = resultSet.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return databaseSaid;
     }
 
 }
