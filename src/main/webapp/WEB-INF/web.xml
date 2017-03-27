@@ -28,7 +28,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>JndiServlet</servlet-name>
-        <url-pattern>/database</url-pattern>
+        <url-pattern>/jndi</url-pattern>
     </servlet-mapping>
 
     <filter>

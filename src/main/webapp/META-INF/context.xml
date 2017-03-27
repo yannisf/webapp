@@ -16,8 +16,6 @@
     </env-entry>
     -->
 
-    <Resource name="bean/SampleBeanFactory" auth="Container" singleton="true"
-              type="fraglab.webapp.bean.SampleBean" factory="org.apache.naming.factory.BeanFactory"
-              beanName="From context.xml"/>
+    <ResourceLink global="SampleBeanFactory" name="bean/SampleBeanFactory" type="fraglab.webapp.bean.SampleBean"/>
 
 </Context>

@@ -22,6 +22,8 @@ public class JndiServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String key = req.getParameter("key");
+
         Integer databaseSaid = 0;
         String environmentSaid = "";
         SampleBean bean = null;
@@ -42,6 +44,9 @@ public class JndiServlet extends HttpServlet {
         resp.getWriter().println(String.format("Database said [%s]", databaseSaid));
         resp.getWriter().println(String.format("Environment said [%s]", environmentSaid));
         resp.getWriter().println(String.format("Bean [%s] has id [%s]", bean.getBeanName(), bean.incrementAndGetId()));
+        if (key != null) {
+            resp.getWriter().println(String.format("Bean [%s] has value [%s]", key, bean.getKey(key)));
+        }
     }
 
     private Integer getInteger(DataSource ds) {
